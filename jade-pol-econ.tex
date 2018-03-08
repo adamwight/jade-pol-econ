@@ -9,8 +9,9 @@
 \usepackage{amsfonts}
 \usepackage{epstopdf}
 \usepackage[utf8]{inputenc}
+
 \usepackage{tikz}
-\usetikzlibrary{arrows, calc, shapes}
+\usetikzlibrary{arrows, shapes}
 \usepackage{datastore}
 
 %\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
@@ -39,15 +40,12 @@ JADE challenges the hegemony of opaque AIs, providing a platform for holding alg
 
 Artificial intelligence has become indispensable to the largest digital businesses, from search engines and email hosts, to shopping, mortgage, insurance, and law enforcement services.  AI is used to provide quality control, curation, and analytics at massive scale, rather than having humans do the work.  Human decision-making has been replaced by an emulation, interpolated from previously recorded decisions, and is mediated by algorithm owners and designers.  This last category, the technocracy, is largely unaccountable for the quality and social impact of the AIs they deploy.  In a commercial setting, the only constant, guiding force in AI design is the profit motive.
 
-The ownership of powerful AIs which can change people's life chances (mortgages, law enforcement) and exacerbate existing social ills (redlining, racial profiling) is troubling.  AIs operated by companies or governments are currently closed by default.  Companies rely on an information disparity to protect profit, so have no incentive to make their algorithms or data available for public review.
+The corporate ownership of powerful AIs which affect people's life chances (mortgages, law enforcement) and exacerbate existing social ills (redlining, racial profiling) is troubling, because there's no oversight or democratic accountability.  AIs operated by companies or governments are currently closed by default.  Companies rely on an information disparity to protect profit, so have no incentive to make their algorithms or data available for public review.
 
-All AIs learn from humans, and will replicate our prejudices or group polarization.  Just as it's difficult for humans to be self-critical and diagnose our own prejudices, an AI cannot detect its built-in biases.  There are research methods available to explore and measure this bias, and some methods can be used independently, without requiring privileged access to the AI internals.  Christian Sandvig (2014) illustrates some of these methods, however these are usually outlawed by site terms of service, and can even trigger felonies in the United States under the Computer Fraud and Abuse Act.
+All AIs learn from humans, and will replicate our prejudices or group polarization.  Just as it's difficult for humans to be self-critical and diagnose our own prejudices, an AI cannot detect its built-in biases.  There are known research methods available to explore and measure this bias, and some auditing is possible without privileged access to the AI internals.  Christian Sandvig (2014) illustrates these methods, but also points out that the most effective techniques for auditing research are forbidden by site terms of service, and can even trigger felonies in the United States under the Computer Fraud and Abuse Act.
 
-We're introducing Judgment and Dialogue Engine in order to audit the AIs which are used on Wikipedia and related sites.  In figure~\ref{fig:audited}, JADE is the lower feedback loop involving "reviewers".  In practice, the reviewers will be looking at wiki content and at machine predictions, and will begin a JADE session when they feel that the prediction is incorrect, or simply to record their judgment about wiki content.  The system will provide open access to the data created by reviewers.  Crucially, the reviewers are able to read each other's judgments, discuss any disagreements, and make changes to the recorded judgment.
+For the moment, AI engineers must audit their own systems.  The emerging industry standard is to present an occasional feedback dialog to some sample of users, which asks a question like "Do you agree with this recommendation?".  In some systems, the respondent may be able to add a comment, but that's the extent of the interaction.  Reviewers are alienated from one another, cannot read or discuss other users' responses, and have no agency.
 
-The best outcome would be that we've performed a disintermediation that takes power away from the algorithm designers and gives power to the reviewers.  In this scenario, the data from reviewers would feed back into AI training without being mediated by AI technicians.  The worst outcome would be that we enable the formation of a small group which undergoes polarization, and pushes the AI towards even deeper biases.
-
-If our society can agree that AIs must be regulated\footnote{A precedent for this sort of regulation is the U.S. Federal Aviation Administration's Aircraft Certification Service, which reviews and certifies software and hardware to be used in aircraft.} by a "right to audit", then JADE may serve as an example for how to accomplish this auditing in a pro-social structure.
 
 \begin{figure}
 \begin{tikzpicture}[
@@ -84,6 +82,12 @@ If our society can agree that AIs must be regulated\footnote{A precedent for thi
 \end{tikzpicture}
 \caption{AI feedback with auditing (in Wikipedia)} \label{fig:audited}
 \end{figure}
+
+We're introducing Judgment and Dialogue Engine in order to audit AIs which are used on Wikipedia and related sites, and to humanize the process.  In figure~\ref{fig:audited}, JADE is the lower feedback loop involving "reviewers".  In practice, the reviewers will be looking at wiki content and at machine predictions, and will begin a JADE session when they feel that the prediction is incorrect, or simply to record their judgment about wiki content.  The system will provide open access to the data created by reviewers.  Crucially, the reviewers are able to read each other's judgments, discuss any disagreements, and make changes to the recorded judgment.
+
+The best outcome would be that we've performed a disintermediation that takes power away from the algorithm designers and gives power to the reviewers.  In this scenario, the data from reviewers would feed back into AI training without being mediated by AI technicians.  The worst outcome would be that we enable the formation of a small group which undergoes polarization, and pushes the AI towards even deeper biases.
+
+If our society can agree that AIs must be regulated\footnote{A precedent for this sort of regulation is the U.S. Federal Aviation Administration's Aircraft Certification Service, which reviews and certifies software and hardware to be used in aircraft.} by a "right to audit", then JADE may serve as an example for how to accomplish this auditing in a pro-social structure.
 
 \bibliography{references}
 
