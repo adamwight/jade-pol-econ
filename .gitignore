@@ -3,6 +3,10 @@
 *.blg
 *.cut
 *.dvi
+*.glg
+*.glo
+*.gls
+*.ist
 *.log
 *.out
 *.synctex.gz
