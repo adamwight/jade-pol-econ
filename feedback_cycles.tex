@@ -1,0 +1,60 @@
+\begin{figure}
+\begin{tikzpicture}[
+  font=\sffamily,
+  every matrix/.style={ampersand replacement=\&,column sep=2cm,row sep=2cm},
+  interface/.style={draw,thick,regular polygon,regular polygon sides=4,inner sep=0},
+  process/.style={draw,thick,rounded corners,inner sep=.3 cm},
+  datastore/.style={draw,thick,shape=datastore,inner sep=.3cm},
+  to/.style={->,>=stealth',shorten >=1pt,semithick,font=\sffamily\footnotesize},
+  every node/.style={align=center}]
+
+  % Position the nodes using a matrix layout
+  \matrix{
+    \node[process] (editor) {Contributor};
+      \& \node[datastore] (content) {Content}; \\
+    \node[datastore] (scores) {Machine \\ predictions};
+      \& \node[process] (ai) {AI}; \\
+  };
+
+  % Draw the arrows between the nodes and label them.
+  \draw[to] (editor) -- node[midway, above] {edits}
+      node[midway, below] {curation} (content);
+  \draw[to] (content) -- node[midway, right] {} (ai);
+  \draw[to] (ai) -- node[midway, above] {raw scores} (scores);
+  \draw[to] (scores) -- node[midway, right] {rendered \\ scores} (editor);
+\end{tikzpicture}
+\caption{Unmoderated AI feedback} \label{fig:vicious}
+\end{figure}
+
+\begin{figure}
+\begin{tikzpicture}[
+  font=\sffamily,
+  every matrix/.style={ampersand replacement=\&,column sep=2cm,row sep=2cm},
+  interface/.style={draw,thick,regular polygon,regular polygon sides=4,inner sep=0},
+  process/.style={draw,thick,rounded corners,inner sep=.3 cm},
+  datastore/.style={draw,thick,shape=datastore,inner sep=.3cm},
+  to/.style={->,>=stealth',shorten >=1pt,semithick,font=\sffamily\footnotesize},
+  every node/.style={align=center}]
+
+  % Position the nodes using a matrix layout
+  \matrix{
+    \node[process] (editor) {Contributor};
+      \& \node[datastore] (content) {Content}; \\
+    \node[datastore] (scores) {Machine \\ predictions};
+      \& \node[process] (ai) {AI}; \\
+  };
+
+  \node [process, below=3cm, align=flush center] (patroller) at ($(scores)!0.5!(ai)$) {Reviewer};
+
+  % Draw the arrows between the nodes and label them.
+  \draw[to] (editor) -- node[midway, above] {edits}
+      node[midway, below] {curation} (content);
+  \draw[to] (content) -- node[midway, right] {} (ai);
+  \draw[to] (ai) -- node[midway, above] {raw scores} (scores);
+  \draw[to] (scores) -- node[midway, right] {rendered \\ scores} (editor);
+  \draw[to] (scores) -- node[midway, left] {rendered \\ scores} (patroller);
+  \draw[to] (patroller) -- node[midway, right] {false \\ positives} (ai);
+\end{tikzpicture}
+\caption{AI feedback with auditing (Wikipedia)} \label{fig:audited}
+\end{figure}
+

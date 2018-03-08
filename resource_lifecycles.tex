@@ -1,0 +1,179 @@
+\section{Resource lifecycles}
+
+This section is intended to give an outline of our main resource streams, their flow, and who holds the control.  This is the social and material context in and upon which the AIs operate.
+
+\subsection{Money}
+
+This story begins with money, only to say that it's not a dominant force in the Wikimedia movement.  Money flows are an order of magnitude less than estimates of the worth of knowledge and labor involved.
+
+\subsubsection{Where does the money come from?}
+
+The Wikimedia Foundation's revenue comes from donations and grants, and the lion's share from individual donations under \$30.  The Foundation is prohibited from using any of this money to directly produce wiki content.
+
+\begin{itemize}
+\item Individual donors giving \$100 or less: \$65M or about 75\% of the WMF budget.
+\footnote{\url{https://www.mediawiki.org/wiki/User:Adamw/Contribution_distribution}}
+\footnote{\label{wmfaudit}\url{https://upload.wikimedia.org/wikipedia/foundation/d/da/Wikimedia_Foundation_Audit_Report_-_FY16-17.pdf}}
+\item Unrestricted large grants of \$100 or more: \$22M or about 25\% of the WMF budget.
+\item Restricted, large grants: Assets of \$3.5M
+\footnote{WMF Audit FY16-17, section (5)}
+\end{itemize}
+
+Similar flows of money are donated to Wikimedia chapters, although the mix of donations, grants, and membership dues varies widely.
+
+Another, more troubling, flow is the money being paid to some editors.  These payments are unregulated and unaccounted for.
+\begin{itemize}
+\item Shadow editor employers: Unknown.
+\footnote{This would be an important number to estimate.  One possible approach is to write an algorithm which can match paid promotional edits with reasonable precision, then multiply the number of articles being edited by the average price per paid article, currently something like \$400.}
+\item Declared paid editor employers: Unknown, see above.
+\end{itemize}
+
+\subsubsection{Where's the money?}
+
+The Wikimedia Foundation holds \$113M in net assets.\textsuperscript{\ref{wmfaudit}}
+
+Wikimedia chapters have independent finances.  To take two examples of large chapters, the German chapter has roughly \$6M in assets, and \$6M in revenue.  The Swiss chapter has \$1.8M in assets and \$6M in revenue.
+
+\subsubsection{Who controls the money?}
+
+The Wikimedia Foundation's Board has the final say over how their donor money will be spent.  This Board consists of 10 members, 5 are self-appointed, 2 members are chosen by chapters, and 3 are nominally elected by a vote.  In the 2017 Board election, 874 votes were tallied, or 1.2\% of active editors.  Internally, the Wikimedia Foundation is organized into a corporate hierarchy in which the executives are the effective body making practical decisions about how to implement mandates given by the Board.
+
+A separate, elected entity called the Funds Dissemination Committee makes recommendations covering roughly \$1M of grants.\footnote{\url{https://meta.wikimedia.org/wiki/Grants:APG/Funds_Dissemination_Committee}}
+
+Wikimedia chapters are legally independent and responsible for their own budget.  Most have a board and and an executive staff.
+
+Paid editor employers make private decisions about how to allocate their money, which we can only speculate about by making an analysis of paid edits.
+
+\subsubsection{Where does the money go?}
+
+The Wikimedia Foundation's major spending is \$33.7M in payroll, and \$11.2M in grants to aligned projects.  \$24.2M more is spent on a mixed bag of services and other supporting costs.
+
+Paid editor funds are like payroll, in that they don't do any further work in the wiki ecosystem once paid, other than making paid editing a sustainable livelihood.
+
+\subsection{Knowledge}
+
+Knowledge is the bread and butter of the Wikipedia movement. This is its currency and the most unique aspect of its worth.
+
+\subsubsection{What is knowledge?}
+
+Good question.  For our purposes, it has two forms, one is its written form and the other when it's retained in a living human.  Knowledge can be true or false.  It can be useful or irrelevant to the learner, depending on context.  Knowledges can be contradictory and yet coexist.  Knowledge has value.  Its use value can be decoupled from its exchange value.
+
+The discussions on "talk" pages are the primary means of coordinating and communicating content creation, but we'll exclude from a tally of knowledge, as these are an intermediate product of knowledge production.
+
+\subsubsection{How much knowledge is there?}
+
+The corpus of all wikis consists of 351M articles.  One estimate is that the replacement cost of Wikipedia would be \$6.6B, and the consumer benefit is in the hundreds of billions of dollars.\footnote{\url{http://infojustice.org/wp-content/uploads/2013/10/band-gerafi10032013.pdf}}
+
+Content is not equally distributed among wikis, for example 13\% of the pages are in English Wikipedia, and the top 6 wikis account for half of all articles.  This shows that the project is far from complete, if all 288 languages of Wikipedia were to catch up with English content, it would require a 36-fold increase.  It also shows that we have biases favoring English content.
+
+\subsubsection{Where does knowledge come from?}
+
+Wikipedia's guidelines suggest that its knowledge should mostly come from secondary sources.\footnote{\url{https://en.wikipedia.org/w/index.php?title=WP:PRIMARY}}  Heather Ford points out that these rules, if followed, would create a bias towards scholarly works which only cover a tiny fraction of subjects, but that the actual sources used are only estimated to be 53\% secondary, with tertiary sources accounting for 13\% of citations and primary sources 34\%.\footnote{\citet{Ford2013}}
+
+More troubling, the geographic biases in sources are extreme.  56\% of the sampled sources were from the U.S., and 13\% from the U.K.
+
+[Graham: editing going to colonial language wikis]
+
+\subsubsection{Where is knowledge housed?}
+
+Our corpus of knowledge is the written form stored on publicly available servers.  The Wikimedia Foundation hosts the dominant, editable interface to our corpus, but the raw data and forks are available, in the ballpark of [hundreds] on the Internet, and [thousands] of offline editions.
+
+There is tremendous knowledge in the intersubjective minds of our current and future editors, and this guides their editing.  According to wiki rules, editor's personal experience isn't supposed to be directly transcribed into the corpus, it can only mediate work done with other sources of knowledge.
+
+\subsubsection{Who produces knowledge?}
+
+Editors and other wiki contributors are the only producers of knowledge.
+
+\subsubsection{How does knowledge flow?}
+
+Content is added, edited, and consumed mostly using the MediaWiki Web interface.  Roughly 5M new pages and 5M media files are added each year, and 220,000 articles were added to English Wikipedia during 2017.
+
+\subsubsection{How is knowledge curated?}
+
+Not all information added to wikis will be retained.  1,500 pages are deleted every day, and ca. 8,000 edits are reverted.\footnote{\url{https://tools.wmflabs.org/wmcharts/wmchart0004.php}, \url{https://tools.wmflabs.org/wmcharts/wmchart0008.php}}  Most wikis have no mandatory review for edits, and as soon as a change is made, it's visible to the public.  A handful of automated bots follow these changes and can undo the worst vandalism almost instantaneously, then human patrollers review the most recent changes that remain, and may fix or undo the change, or mark it as good.  These tools will be discussed below.
+
+Changes that create a new article go through a more rigorous review, and the "new pages patrol" backlog has recently been the subject of an experiment in restricting the "supply" of incoming articles.\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:New_pages_patrol}, \url{https://en.wikipedia.org/w/index.php?title=WP:ACTRIAL}}
+
+\subsubsection{Where does knowledge go?}
+
+Readers find and consume our written corpus.  Doing so changes the reader's internal state, hopefully in wonderful ways.
+
+Articles must be discovered in order to be read.  If an article is orphaned or has few incoming links, it's unlikely to be read.
+
+Countless AIs and other downstream software devour the corpus in real-time, as it evolves.  There is no control or accounting for where this is going.  Our licenses don't require anything from these consumers.
+
+\subsection{Labor}
+
+Most editing is done by unpaid editors, whose work is worth an estimated \$490M per year.\footnote{\citep{Lund}}
+
+\subsubsection{Who are the workers?}
+
+The number of active editors on English Wikipedia, those who have made 5 or more edits in the last month, is around 73,000.  There are [XX] active editors across all wiki projects.
+
+Currently, 2,076 editors, or 2.8\% of the active editors on English Wikipedia  disclose that they are paid for their work, using the recommended tag.\footnote{\url{https://tools.wmflabs.org/templatecount/index.php?lang=en&namespace=10&name=Connected+contributor+\%28paid\%29}}
+
+Estimating by subtracting the number of paid editors, and extrapolating to all wikis, 97.2\% of the active editors are assumed to be unpaid, or roughly 65,000 active editors across all wiki projects.
+
+There's no authoritative census of editor demographics, this information is rarely self-reported, and surveys vary widely.\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:Wikipedians\#Demographics}}  We can say with some certainty that women are underrepresented among editors, one survey estimated that 12.6\% of editors identify as female.
+
+\subsubsection{Who's the boss?}
+
+Unpaid workers are independent.
+
+Declared and shadow paid editors are on either short- or long-term contracts with their clients, who might be individuals or organizations.  
+
+\subsubsection{Collaborative relationships between contributors}
+
+Each article has an associated page for discussion, called a "talk page".  The talk pages are a major part of editor culture, and are the preferred way to communicate and coordinate edits.\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:Talk_page_guidelines}}  These pages exist to discuss improvements to articles, and it's discouraged to use them for other topics.  Each talk page has a natural relationship to exactly one article, for example "Talk:Earth".
+
+Another class of pages are the noticeboards, which each have a specific function such as requesting help with a dispute, or coordinating a work backlog.\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:Noticeboards}}
+
+Interestingly, there is strong disagreement about the potential for more general social interactions on Wikipedia.  Compare an essay encouraging community-building\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:Wikipedia_is_a_community}} (69 edits by 34 editors, 747 incoming links) to the essay discouraging social networking\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:Wikipedia_is_not_a_social_networking_site}} (17 edits by 12 editors, 39 incoming links).  Regardless of the lack of editor consensus on this issue, the MediaWiki technology itself is unadaptable to most social network behaviors.  You can't "follow", "friend", or have private conversations.  Spaces for discussion are mostly instrumental, intended for a single purpose.
+
+If no space exists for other types of collaboration, it can be created in an ad-hoc fashion.  For example, many WikiProjects have been created for communities of shared interest.\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:WikiProject_Council/Directory}}  These are where you would coordinate work across articles in some subset of medical knowledge, for example.  The ad-hoc format means that any correlation between a discussion and content must be created explicitly, often by pasting a bullet list of articles.
+
+\subsubsection{Power relationships between contributors}
+
+There is an explicit administrative hierarchy among volunteers, in which some individuals and bodies have the privileges to overrule decisions, and restricted technical powers such as the ability to view private information about editors.\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:Administration\#Editors}}  Contributors with these extra powers are not allowed to directly manage or command others, and the powers are granted through open nominations and consensus or vote.\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:Requests_for_adminship}, \url{https://en.wikipedia.org/wiki/Wikipedia:What_adminship_is_not}}  Still, this elevated power is a site of contest and is at odds with the generally wiki culture of equality and democracy.
+
+Users can be blocked in cases of extreme misbehavior, normally something that's done to prevent ongoing damage to the content.  Blocking is just one tool among the dispute resolution processes.\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:Dispute_resolution}}
+
+Editors will sometimes be granted respect on account of a high edit count, which serves as a "quick and crude aid" to gauge another person's experience within the project.
+
+\subsubsection{Alienation}
+
+Alienation is the lack of community between editors.[connectivity studies?]
+
+On a larger scale, isolation between wiki language communities is another form of isolation.[self-focus]
+
+\subsubsection{What are the tools of production?}
+
+Editors own their own computers.  The Wikimedia Foundation owns servers and storage attached to their flagship domain names.  The Internet does the distribution.  Readers will need a networked device to consume.
+
+Some editors rely on bot assistance
+
+\subsubsection{Where is labor performed?}
+
+Editing is mostly done in isolation.  Occasionally, groups of editors get together to discuss or edit.  Paid editors may work from an office.
+
+\subsubsection{Who owns the tools of production?}
+
+
+
+\subsubsection{What are the preconditions for knowledge production?}
+
+At the moment, editors must have unhindered Internet access.  They must be literate, and if unpaid must have the free time to edit.  They must have tech skills and be motivated to participate.  If editors lose any of these, for example through time constraints, or discouraging social interactions, they will leave the project.
+
+\subsubsection{What is being produced?}
+
+[don't repeat knowledge section]
+[how much is produced?]
+
+\section{Artificial Intelligence: to the rescue?}
+
+
+
+\begin{acks}
+I was paid to write this paper, something less than \$850 in normal wages from the Wikimedia Foundation, and no other funding.
+\end{acks}
+
