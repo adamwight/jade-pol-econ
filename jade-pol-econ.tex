@@ -1,4 +1,5 @@
-\documentclass[format=sigconf,11pt]{acmart}
+% TODO: only enable `screen` for web review
+\documentclass[format=sigconf, authorversion]{acmart}
 \usepackage{geometry}
 \geometry{a4paper}
 %\geometry{landscape}                % Activate for for rotated page geometry
@@ -8,8 +9,11 @@
 \usepackage{amsfonts}
 \usepackage{epstopdf}
 \usepackage{hyperref}
-\usepackage{cleveref}
+\usepackage[utf8]{inputenc}
+
 %\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\bibliographystyle{acm}
 
 \title{[TITLE]}
 \author{Adam Wight}
@@ -17,7 +21,7 @@
 \affiliation{Wikimedia Foundation}
 %\date{}                                           % Activate to display a given date or no date
 
-\crefformat{footnote}{#2\footnotemark[#1]#3}
+\acmConference[WebSci'18]{Understanding the political economy of digital technology}{May 2018}{Amsterdam, NL}
 
 \begin{document}
 \maketitle
@@ -25,15 +29,11 @@
 
 [THESIS]
 
-[WP is both embedded within capitalism and affected by it, and works against it through free knowledge dissemination, nonvocational education, and consensus principles.  At the end of each section, some suggestions are made about how we might fight to expropriate the resource.
+[WP is both embedded within capitalism and affected by it, and works against it through free knowledge dissemination, nonvocational education, and consensus principles.  At the end of each section, some suggestions are made about how we might fight to expropriate the resource.]
 
-I've tried to organize the subsections roughly in parallel, following the flow of each commodity.
+\section{Resource lifecycles}
 
-Author funding sources: I was paid to write this paper, no more than \$850 of normal wages from the Wikimedia Foundation and nothing else.
-
--A. Wight, Bogotá, DC, Columbia
-
-\section{Frequently asked questions}
+This section is intended to give an outline of our main resource streams, their flow, and who holds the control.
 
 \subsection{Money}
 
@@ -42,7 +42,7 @@ This story begins with money only to say that it's not a dominant force in the W
 \subsubsection{Where does the money come from?}
 
 \begin{itemize}
-\item Shadow editor employers: \$0--$\infty$.
+\item Shadow editor employers: Unknown.
 \footnote{This would be an important number to estimate.  One possible approach is to write an algorithm which can match paid promotional edits with reasonable precision, then multiply the number of articles being edited by the average price per paid article, currently something like \$400.}
 \item Declared paid editor employers: Unknown, see above.
 \item Individual donors giving \$100 or less: \$65M or about 75\% of the WMF budget.
@@ -55,29 +55,27 @@ This story begins with money only to say that it's not a dominant force in the W
 
 \subsubsection{Where's the money?}
 
-The Wikimedia Foundation holds \$113M in net assets.\cref{wmfaudit}
+The Wikimedia Foundation holds \$113M in net assets.\textsuperscript{\ref{wmfaudit}}
 
-Wikimedia chapters hold [??]
+Wikimedia chapters have independent finances.  To take two examples of large chapters, the German chapter has roughly \$6M in assets, and \$6M in revenue.  The Swiss chapter has \$1.8M in assets and \$6M in revenue.
 
 \subsubsection{Who controls the money?}
 
-The Wikimedia Foundation's Board has the final say over how their donor money will be spent.  Out of 10 members, 3 are nominally elected by a vote where about 4\% of active editors normally turn out.  2 members are chosen by chapters, and the remaining members are appointed by the Board itself.
+The Wikimedia Foundation's Board has the final say over how their donor money will be spent.  This Board consists of 10 members, 5 are self-appointed, 2 members are chosen by chapters, and 3 are nominally elected by a vote where about 4\% of active editors normally turn out.
 
-\subsubsection{How does the money move?}
+A separate, elected entity called the Funds Dissemination Committee makes recommendations covering roughly \$1M of grants.
 
-
+Each Wikimedia chapter is legally independent and responsible for its own budget.  Most have a board and and an executive staff.
 
 \subsubsection{Where does the money go?}
 
-The Wikimedia Foundation's major spending is \$33.7M in payroll, and \$11.2M in grants.  \$24.2M more is spent on a mixed bag of services and other supporting costs.
+The Wikimedia Foundation's major spending is \$33.7M in payroll, and \$11.2M in grants to aligned projects.  \$24.2M more is spent on a mixed bag of services and other supporting costs.
 
-Paid editor funds are dissipated by household expenses.
+Paid editor funds behave like payroll, and don't do further work in the wiki ecosystem.
 
 \subsubsection{"Fight for zero" against capitalist money}
 
-There are efforts to get paid advertising out of Wikipedia, and undeclared paid advertising is already prohibited.
-
-[give examples and statements]
+There are efforts to get paid advertising out of Wikipedia, and undeclared paid advertising is already prohibited.  Specifically, a rule on English Wikipedia reads: "If you are paid in any way for contributing to Wikipedia, you \textbf{must} disclose it."\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:Paid-contribution_disclosure}} Another policy reads, "Do not edit Wikipedia in your own interests or in the interests of your external relationships."\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:Conflict_of_interest}} Rules exist to be broken, so paid editing continues, both declared and undeclared.
 
 \subsubsection{Fighting capitalist influence on the Wikimedia Foundation}
 
@@ -85,11 +83,11 @@ The low proportion of restricted grants and complete lack of advertising money i
 
 \subsection{Knowledge}
 
-Knowledge is the bread and butter of Wikipedia and its sister wiki projects[cn]. This is our currency and our only worth.
+Knowledge is the bread and butter of Wikipedia and its sister wiki projects[cn]. This is our currency and the most unique aspect of our worth.  One estimate is that the replacement cost of Wikipedia would be \$6.6B, and the consumer benefit is in the hundreds of billions of dollars.\footnote{\url{http://infojustice.org/wp-content/uploads/2013/10/band-gerafi10032013.pdf}}
 
 \subsubsection{What is knowledge?}
 
-Good question.  For our purposes, it has two forms, either written down or retained in a living human.  Knowledge can be true or false.  It can be useful or irrelevant to the learner, depending on context.  Knowledges can be contradictory and yet coexist.  Knowledge has value.  Its use value can be decoupled from its exchange value.
+Good question.  For our purposes, it has two forms, one is its written form and the other when it's retained in a living human.  Knowledge can be true or false.  It can be useful or irrelevant to the learner, depending on context.  Knowledges can be contradictory and yet coexist.  Knowledge has value.  Its use value can be decoupled from its exchange value.
 
 The discussions on "talk" pages are the primary means of coordinating and communicating content creation, but we'll ignore as it's an intermediate product of knowledge production.
 
@@ -97,9 +95,9 @@ The corpus of all wikis consists of 351M articles.  13\% of these are in English
 
 \subsubsection{Where does knowledge come from?}
 
-Wikipedia [cn] claims that its knowledge should only come from secondary sources.  Ford [??] points out that the rules actually call for tertiary sources, yet actual sources are usually secondary (truly) or often (contraband) primary [???].
+Wikipedia's guidelines suggest that its knowledge should mostly come from secondary sources.\footnote{\url{https://en.wikipedia.org/w/index.php?title=WP:PRIMARY}}  Heather Ford points out that these rules would create a bias towards scholarly works, which only cover a tiny fraction of subjects, and that the actual sources used are only estimated to be 53\% secondary, with tertiary sources accounting for 13\% of citations and primary sources 34\%.\footnote{\citet{Ford2013}}
 
-Some of the knowledge is original research, [meaning].
+More troubling, the geographic biases in sources are extreme.  56\% of the sampled sources were from the U.S., and 13\% from the U.K.
 
 \subsubsection{Where is knowledge housed?}
 
@@ -111,13 +109,23 @@ There is tremendous knowledge in the intersubjective minds of our current and fu
 
 Editors and other wiki contributors are the only producers of knowledge.
 
-\subsubsection{How is knowledge transferred?}
+\subsubsection{How does knowledge flow?}
 
-Content is added and edited mostly using the MediaWiki Web interface.  Roughly 5M new articles and 5M media files are added each year.
+Content is added, edited, and consumed mostly using the MediaWiki Web interface.  Roughly 5M new articles and 5M media files are added each year.
+
+Third-party consumers will probably follow feeds, or will ingest regular full backups.
+
+\subsubsection{How is knowledge curated?}
+
+Not all information added to wikis will be retained.  1,500 pages are deleted every day, and ca. 8,000 edits are reverted.\footnote{\url{https://tools.wmflabs.org/wmcharts/wmchart0004.php}, \url{https://tools.wmflabs.org/wmcharts/wmchart0008.php}}  Most wikis have no mandatory review for edits, and as soon as a change is made, it's visible to the public.  A handful of automated bots follow these changes and can undo the worst vandalism almost instantaneously, then human patrollers review the most recent changes that remain, and may fix or undo the change, or mark it as good.  These tools will be discussed below.
+
+Changes that create a new article go through a more rigorous review, and the "new pages patrol" backlog has recently been the subject of an experiment in restricting the "supply" of incoming articles.\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:New_pages_patrol}, \url{https://en.wikipedia.org/w/index.php?title=WP:ACTRIAL}}
 
 \subsubsection{Where does knowledge go?}
 
-Readers find and consume our written corpus.  Doing so changes their internal state, hopefully in wonderful ways.  Articles must be discovered in order to be read.  [orphans].
+Readers find and consume our written corpus.  Doing so changes the reader's internal state, hopefully in wonderful ways.
+
+Articles must be discovered in order to be read.  If an article is orphaned or has few incoming links, it's unlikely to be read.
 
 Countless AIs and other downstream software devour the corpus in real-time, as it evolves.  There is no control or accounting for where this is going.  Our licenses don't require anything from these consumers.
 
@@ -133,18 +141,21 @@ We may have the alternative to use the non-commercial CC BY-NC-SA license, altho
 
 With no requirement to give back or be accountable to the public, we don't know what the social impact of capitalist reuse might be.
 
-\subsubsection{Expand the types of knowledge}
+\subsubsection{Expand the types and sources of knowledge}
 
-If we believe in the wiki model, then more types of knowledge should benefit from it.  For example, oral histories could be captured digitally and made available as primary sources.[Gallert]
+If we believe in the wiki model, then more types of knowledge should benefit from it.  For example, oral histories could be captured digitally and made available as primary sources.\footnote{Peter Gallert has made arguments for the inclusion of oral knowledge, see \url{https://blog.wikimedia.org/2014/12/12/tapping-into-the-knowledge-of-indigenous-communities/}}
 
 \subsection{Labor}
 
-
+Most editing is done by unpaid editors, whose work is worth an estimated \$490M per year.\footnote{\citep{Lund}}
 
 \subsubsection{Who are the workers?}
 
-[survey of unpaid vs paid]
+Currently, there are 2,076 paid editors on English Wikipedia who use the recommended disclosure tag, or 6.7\% of the active editors.\footnote{\url{https://tools.wmflabs.org/templatecount/index.php?lang=en&namespace=10&name=Connected+contributor+\%28paid\%29}}
 
+Estimating by subtracting the number of paid editors, 93.3\% of the active editors\footnote{The measure we use for "active" is that the user has made an edit within the most recent 30 days.} are likely unpaid, or roughly 65,000 active editors across all wiki projects.
+
+There's no authoritative census of editor demographics, this information is rarely self-reported, and surveys vary widely.\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:Wikipedians\#Demographics}}  We can say with some certainty that women are underrepresented among editors, one survey estimated that 12.6\% of editors identify as female.
 
 \subsubsection{Who's the boss?}
 
@@ -162,7 +173,7 @@ Declared and shadow paid editors are on either short- or long-term contracts wit
 
 \subsubsection{Alienation}
 
-Alienation is the lack of community between editors.  
+Alienation is the lack of community between editors.[connectivity studies?]
 
 On a larger scale, isolation between wiki language communities is another form of isolation.[self-focus]
 
@@ -174,7 +185,7 @@ Some editors rely on bot assistance
 
 \subsubsection{Where is labor performed?}
 
-
+Editing is done from private residences.
 
 \subsubsection{Who owns the tools of production?}
 
@@ -191,7 +202,7 @@ At the moment, editors must have unhindered Internet access.  They must be liter
 
 \subsubsection{Fighting for workers' rights: an Editor's Union}
 
-[history of]
+In negotiations between the contributors and entities like the Wikimedia Foundation, it's clear that the editors are at a disadvantage for not having any coherent, collective voice or ability to bargain.  A typical solution would be to create an association of Wikimedians, which would have the legal right to act on behalf of its constituents.  This proposal first surfaced at the time the Wikimedia Foundation was created\footnote{\url{https://meta.wikimedia.org/wiki/Association_of_Wikimedians}}, and comes up on the mailing lists, usually during crises.
 
 \subsubsection{Fight against censorship and for net neutrality}
 
@@ -203,14 +214,20 @@ Slight changes in Google's search engine results pages can cause our site traffi
 
 [work backlogs and their side-effects]
 
-\subsubsection{Counteract biases in contributor selection}
+\subsubsection{Counteract biases in contributor demographics}
 
 \section{Political economy of artificial intelligence}
 
-AIs run by the Wikimedia Foundation (ORES) and by volunteers ([??]) are human-enhancing technologies, which exist to help contributors more effectively curate and produce.  The economically significant AIs are those that 
+AIs run by the Wikimedia Foundation (ORES) and by volunteers ([??]) are human-enhancing technologies which exist to help contributors more effectively curate and produce.  The economically significant AIs are those that 
 
 \section{Auditing}
 
 [of AIs and the corpus]
+
+\begin{acks}
+I was paid to write this paper, something less than \$850 in normal wages from the Wikimedia Foundation, and no other funding.
+\end{acks}
+
+\bibliography{references}
 
 \end{document}  
