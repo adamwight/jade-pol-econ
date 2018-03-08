@@ -43,7 +43,7 @@ The ownership of powerful AIs which can change people's life chances (mortgages,
 
 All AIs learn from humans, and will replicate our prejudices or group polarization.  Just as it's difficult for humans to be self-critical and diagnose our own prejudices, an AI cannot detect its built-in biases.  There are research methods available to explore and measure this bias, and some methods can be used independently, without requiring privileged access to the AI internals.  Christian Sandvig (2014) illustrates some of these methods, however these are usually outlawed by site terms of service, and can even trigger felonies in the United States under the Computer Fraud and Abuse Act.
 
-We're introducing Judgment and Dialogue Engine in order to audit the AIs which are used on Wikipedia and related sites.  In figure~\ref{fig:audited}, JADE is the triangular feedback loop involving "reviewers".  In practice, the reviewers will be looking at wiki content and at machine predictions, and will begin a JADE session when they feel that the prediction is incorrect, or simply to record their judgment about wiki content.  The system will provide open access to the data created by reviewers.  Crucially, the reviewers are able to read each other's judgments, discuss any disagreements, and make changes to the recorded judgment.
+We're introducing Judgment and Dialogue Engine in order to audit the AIs which are used on Wikipedia and related sites.  In figure~\ref{fig:audited}, JADE is the lower feedback loop involving "reviewers".  In practice, the reviewers will be looking at wiki content and at machine predictions, and will begin a JADE session when they feel that the prediction is incorrect, or simply to record their judgment about wiki content.  The system will provide open access to the data created by reviewers.  Crucially, the reviewers are able to read each other's judgments, discuss any disagreements, and make changes to the recorded judgment.
 
 The best outcome would be that we've performed a disintermediation that takes power away from the algorithm designers and gives power to the reviewers.  In this scenario, the data from reviewers would feed back into AI training without being mediated by AI technicians.  The worst outcome would be that we enable the formation of a small group which undergoes polarization, and pushes the AI towards even deeper biases.
 
@@ -57,6 +57,7 @@ If our society can agree that AIs must be regulated\footnote{A precedent for thi
   process/.style={draw,thick,rounded corners,inner sep=.3 cm},
   datastore/.style={draw,thick,shape=datastore,inner sep=.3cm},
   to/.style={->,>=stealth',shorten >=1pt,semithick,font=\sffamily\footnotesize},
+  both/.style={<->,>=stealth',shorten >=1pt,semithick,font=\sffamily\footnotesize},
   every node/.style={align=center}]
 
   % Position the nodes using a matrix layout
@@ -65,19 +66,20 @@ If our society can agree that AIs must be regulated\footnote{A precedent for thi
       \& \node[datastore] (content) {Content}; \\
     \node[datastore] (scores) {Machine \\ predictions};
       \& \node[process] (ai) {AI}; \\
+    \node [process] (patroller) {Reviewers};
+      \& \node [datastore] (judgments) {Judgments}; \\
   };
-
-  \node [process, below=3cm, align=flush center] (patroller) at ($(scores)!0.5!(ai)$) {Reviewers};
 
   % Draw the arrows between the nodes and label them.
   \draw[to] (editor) -- node[midway, above] {edits}
       node[midway, below] {curation} (content);
-  \draw[to] (content) -- node[midway, right] {} (ai);
+  \draw[to] (content) -- node[midway, right] {articles, \\ edits} (ai);
   \draw[to] (ai) -- node[midway, above] {raw scores} (scores);
   \draw[to] (scores) -- node[midway, right] {rendered \\ scores} (editor);
-  \draw[to] (scores) -- node[midway, left] {scores \\ justifications} (patroller);
-  \draw[to] (patroller) -- node[midway, right] {judgments \\ rationales} (ai);
-  \draw[to] (patroller) to[loop, out=45, in=-45, looseness=5.8] node[midway, right] {discussion \\ judgments} (patroller);
+  \draw[to] (scores) -- node[midway, left] {scores, \\ justifications} (patroller);
+  \draw[both] (patroller) -- node[midway, below] {judgments, \\ rationales} (judgments);
+  \draw[to] (judgments) -- node[midway, right] {false positives, \\ training data} (ai);
+  \draw[to] (patroller) to[loop, out=135, in=-135, looseness=5.8] node[near end, below] {discussion} (patroller);
 
 \end{tikzpicture}
 \caption{AI feedback with auditing (in Wikipedia)} \label{fig:audited}
