@@ -1,5 +1,5 @@
 % TODO: only enable `screen` for web review
-\documentclass[format=sigconf, authorversion]{acmart}
+\documentclass[format=sigconf]{acmart}
 \usepackage{geometry}
 \geometry{a4paper}
 %\geometry{landscape}                % Activate for for rotated page geometry
@@ -14,6 +14,9 @@
 \usetikzlibrary{arrows, calc, shapes}
 \usepackage{datastore}
 
+\settopmatter{printacmref=false}
+\setcopyright{none}
+
 %\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 
 \bibliographystyle{acm}
@@ -25,6 +28,8 @@
 %\date{}                                           % Activate to display a given date or no date
 
 \acmConference[WebSci'18]{Understanding the political economy of digital technology}{May 2018}{Amsterdam, NL}
+\acmISBN{}
+\acmDOI{}
 
 \begin{document}
 
