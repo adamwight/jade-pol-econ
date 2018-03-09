@@ -11,15 +11,15 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage{tikz}
-\usetikzlibrary{arrows, shapes}
+\usetikzlibrary{arrows, calc, shapes}
 \usepackage{datastore}
 
 %\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 
 \bibliographystyle{acm}
 
-\title{Collaborative auditing: a challenge to closed AI design}
-\author{Adam Wight}
+\title{Collaborative auditing: a challenge to secrecy in artificial intelligence}
+\author{Adam Roses Wight}
 \email{awight@wikimedia.org}
 \affiliation{Wikimedia Foundation}
 %\date{}                                           % Activate to display a given date or no date
@@ -29,23 +29,26 @@
 \begin{document}
 
 \begin{abstract}
-We introduce a system for detecting and mitigating bias in artificial intelligence, called Judgment and Dialogue Engine (JADE).  This system expands on current auditing approaches by adding a dimension of human communication and collaborative decision-making between the reviewers.
+We introduce a system for detecting and mitigating bias in artificial intelligence, called Judgment and Dialogue Engine (JADE).  Expanding on current auditing approaches, JADE adds a dimension of human communication and collaborative decision-making between the auditors.
 
-JADE challenges the hegemony of opaque AIs, providing a platform for holding algorithms accountable and building a community between AI investigators.  The outputs can be analyzed, and fed back into AI training data in order to iteratively uncover and mitigate biases.  Our hope is to show that JADE improves AI performance, and that transparent auditing should be an urgent and widespread intervention in the public interest.
+Collaborative auditing challenges the hegemony of opaque AIs, offering a platform for holding algorithms accountable and building community between AI investigators [and?].  Auditing outputs will be analyzed, and fed back as AI training data in order to iteratively uncover and mitigate biases.  Our hope is to show that JADE improves AI performance, and that a switch to transparent auditing should be made widespread as an urgent intervention in the public interest, worth fighting for.
 \end{abstract}
 
 \maketitle
 
 \section{Introduction}
 
-Artificial intelligence has become indispensable to the largest digital businesses, from search engines and email hosts, to shopping, mortgage, insurance, and law enforcement services.  AI is used to provide quality control, curation, and analytics at massive scale, rather than having humans do the work.  Human decision-making has been replaced by an emulation, interpolated from previously recorded decisions, and is mediated by algorithm owners and designers.  This last category, the technocracy, is largely unaccountable for the quality and social impact of the AIs they deploy.  In a commercial setting, the only constant, guiding force in AI design is the profit motive.
+Artificial intelligence has become indispensable to the largest digital businesses, from search engines and email hosts, to shopping, mortgage, insurance, and law enforcement services.  AI is used to provide quality control, curation, and analytics at massive scales, rather than having humans do the work.  Human decision-making has been replaced by its emulation, interpolated from previously recorded decisions, which are mediated by algorithm owners and designers.  These last two categories, the technocracy, are largely unaccountable for the quality and social impact of the AIs they deploy.  In commercial settings, the only constant, guiding force in AI design must be the profit motive, in absence of any other constraints.\footnote{See Dodge v. Ford (1919) for corporate responsibility in a nutshell.}
 
-The corporate ownership of powerful AIs which affect people's life chances (mortgages, law enforcement) and exacerbate existing social ills (redlining, racial profiling) is troubling, because there's no oversight or democratic accountability by which we can fight back.  AIs operated by companies or governments are currently closed by default.  Companies rely on an information disparity to protect profit, so have no incentive to make their algorithms or data available for public review.
+Corporate ownership of powerful AIs which affect people's life chances (mortgages, law enforcement) and exacerbate existing social ills (redlining, racial profiling) is beyond troubling, because there's no oversight or democratic accountability by which we can fight back.  AIs operated by companies or governments are closed by default.  Companies rely on information disparity, hiding secrets to protect their profit margins, which deincentivize public review of algorithms or data.
 
-All AIs learn from humans, and will replicate our prejudices or group polarization.  Just as it's difficult for humans to be self-critical and diagnose our own prejudices, an AI cannot detect its built-in biases.  There are known research methods available to explore and measure this bias, and some auditing is possible without privileged access to the AI internals.  Christian Sandvig (2014) illustrates these methods, but also points out that the most effective techniques for auditing research are forbidden by site terms of service, and can even trigger felonies in the United States under the Computer Fraud and Abuse Act.
+All AIs learn from humans, and will replicate our prejudices or group polarization.  Just as it's difficult for humans to be self-critical and diagnose our own prejudices, AIs cannot report their own built-in biases, and the owners hardly ever give an account of known side-effects.  Playing with fire, in the dark and uncertain of the consequences, AI practitioners really are Ali Rahimi's modern alchemists.\footnote{\url{http://www.argmin.net/2017/12/05/kitchen-sinks/}}
 
-For the moment, AI engineers must audit their own systems.  The emerging industry standard is to present an occasional feedback dialog to some sample of users, which asks a question like "Do you agree with this recommendation?".  In some systems, the respondent may be able to add a comment, but that's the extent of the interaction.  Reviewers are alienated from one another, cannot read or discuss other users' responses, and have no agency.
+Exploring and measuring biases is imperative, and researchers have developed methods will work even without privileged access to the AI internals.  Christian Sandvig (2014) \citep{Sandvig} illustrates these methods, but also warns that high-quality techniques for independent auditing are prohibited by most sites' terms of service, and can even trigger felonies under the United States' Computer Fraud and Abuse Act.
 
+For the moment, AI engineers must audit their own systems.  The emerging industry standard is to present sampled users with an occasional feedback dialog, posing a question like "Do you agree with this recommendation?".  In these systems, the respondent may be able to add a comment, but that's the beginning and end of any interaction.  Reviewers are alienated from one another, cannot read or discuss other users' responses, and have no agency.  They are reduced to mere processes gathering and corroborating data.
+
+\section{Judgment and Dialogue Engine}
 
 \begin{figure}
 \begin{tikzpicture}[
@@ -63,31 +66,37 @@ For the moment, AI engineers must audit their own systems.  The emerging industr
     \node[process] (editor) {Contributors};
       \& \node[datastore] (content) {Content}; \\
     \node[datastore] (scores) {Machine \\ predictions};
-      \& \node[process] (ai) {AI}; \\
+      \& \node[process] (ai) {Artificial \\ intelligence}; \\
     \node [process] (patroller) {Reviewers};
       \& \node [datastore] (judgments) {Judgments}; \\
   };
+
+  \node [align=flush center] at ($(content)!0.5!(scores)$) {\Large{conformity} \\ \Large{cycle}};
+  \node [align=flush center] at ($(ai)!0.5!(patroller)$) {\Large{collaborative} \\ \Large{auditing}};
 
   % Draw the arrows between the nodes and label them.
   \draw[to] (editor) -- node[midway, above] {edits}
       node[midway, below] {curation} (content);
   \draw[to] (content) -- node[midway, right] {articles, \\ edits} (ai);
   \draw[to] (ai) -- node[midway, above] {raw scores} (scores);
-  \draw[to] (scores) -- node[midway, right] {rendered \\ scores} (editor);
+  \draw[to] (scores) -- node[midway, left] {rendered \\ scores} (editor);
   \draw[to] (scores) -- node[midway, left] {scores, \\ justifications} (patroller);
-  \draw[both] (patroller) -- node[midway, below] {judgments, \\ rationales} (judgments);
+  \draw[both] (patroller) --
+  	node[midway, above] {judgments,}
+  	node[midway, below] {rationales}
+	(judgments);
   \draw[to] (judgments) -- node[midway, right] {false positives, \\ training data} (ai);
-  \draw[to] (patroller) to[loop, out=135, in=-135, looseness=5.8] node[near end, below] {discussion} (patroller);
+  \draw[to] (patroller) to[loop, out=0, in=-60, looseness=3.5] node[near end, below] {discussion} (patroller);
 
 \end{tikzpicture}
-\caption{AI feedback with auditing (in Wikipedia)} \label{fig:audited}
+\caption{AI feedback with auditing (in Wikipedia)}\label{fig:audited}
 \end{figure}
 
-We're introducing Judgment and Dialogue Engine in order to audit AIs which are used on Wikipedia and related sites, and to humanize the process.  In figure~\ref{fig:audited}, JADE is the lower feedback loop involving "reviewers".  In practice, the reviewers will be looking at wiki content and at machine predictions, and will begin a JADE session when they feel that the prediction is incorrect, or simply to record their judgment about wiki content.  The system will provide open access to the data created by reviewers.  Crucially, the reviewers are able to read each other's judgments, discuss any disagreements, and make changes to the recorded judgment.
+We're introducing Judgment and Dialogue Engine in order to audit AIs which are used on Wikipedia and related sites, and to humanize the process [expand].  In figure~\ref{fig:audited}, JADE is the lower feedback loop involving reviewers.  In practice, the reviewers will be looking at wiki content and at machine predictions, and will begin a JADE session to flag an incorrect prediction, or simply to record their judgments about wiki content.  JADE will provide open access to the data created by its reviewers.  Crucially, reviewers are able to read one another's judgments, discuss any disagreements, and make changes to the recorded judgment.
 
-The best outcome would be that we've performed a disintermediation that takes power away from the algorithm designers and gives power to the reviewers.  In this scenario, the data from reviewers would feed back into AI training without being mediated by AI technicians.  The worst outcome would be that we enable the formation of a small group which undergoes polarization, and pushes the AI towards even deeper biases.
+The best outcome would be a disintermediation that takes power away from the algorithm designers and gives it to the reviewers.  In this scenario, the data from reviewers would feed back into AI training without mediation by AI technicians.  The worst outcome would be that we enable the formation of a small group which undergoes polarization, and pushes the AI toward even deeper biases.
 
-If our society can agree that AIs must be regulated\footnote{A precedent for this sort of regulation is the U.S. Federal Aviation Administration's Aircraft Certification Service, which reviews and certifies software and hardware to be used in aircraft.} by a "right to audit", then JADE may serve as an example for how to accomplish this auditing in a pro-social structure.
+If our society can agree that AIs must be regulated\footnote{A precedent for this sort of regulation is the U.S. Federal Aviation Administration's Aircraft Certification Service, which reviews and certifies software and hardware to be used in aircraft.} by a "right to audit", then JADE may serve as an example for how to accomplish this auditing in a pro-social environment.
 
 \bibliography{references}
 
