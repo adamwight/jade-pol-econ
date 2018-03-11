@@ -80,18 +80,17 @@ For the moment, AI engineers must audit their own systems.  The emerging industr
   \node [align=flush center] at ($(ai)!0.5!(patroller)$) {\Large{collaborative} \\ \Large{auditing}};
 
   % Draw the arrows between the nodes and label them.
-  \draw[to] (editor) -- node[midway, above] {edits}
+  \draw[to] (editor) to[bend left=15] node[midway, above] {edits}
       node[midway, below] {curation} (content);
-  \draw[to] (content) -- node[midway, right] {articles, \\ edits} (ai);
+  \draw[to] (content) to[bend left=25] node[midway, right] {articles, \\ edits} (ai);
   \draw[to] (ai) -- node[midway, above] {raw scores} (scores);
-  \draw[to] (scores) -- node[midway, left] {rendered \\ scores} (editor);
-  \draw[to] (scores) -- node[midway, left] {scores, \\ justifications} (patroller);
-  \draw[both] (patroller) --
-  	node[midway, above] {judgments,}
-  	node[midway, below] {rationales}
-	(judgments);
-  \draw[to] (judgments) -- node[midway, right] {false positives, \\ training data} (ai);
-  \draw[to] (patroller) to[loop, out=0, in=-60, looseness=3.5] node[near end, below] {discussion} (patroller);
+  \draw[to] (scores) to[bend left=25] node[midway, left] {rendered \\ scores} (editor);
+  \draw[to] (scores) to[bend right=25] node[midway, left] {scores, \\ justifications} (patroller);
+  \draw[to] (patroller) to[bend right=25] node[midway, above] {} (judgments);
+  \draw[to] (judgments) to[bend right=25] node[midway, above] {} (patroller);
+    \node [align=flush center] at ($(patroller)!0.5!(judgments)$) {judgments, \\ rationales};
+  \draw[to] (judgments) to[bend right=25] node[midway, right] {false positives, \\ training data} (ai);
+  \draw[to] (patroller) to[loop, out=-60, in=-120, looseness=5] node[near end, left] {discussion, \\ consensus} (patroller);
 
 \end{tikzpicture}
 \caption{AI feedback with auditing (JADE in Wikipedia)}\label{fig:audited}
