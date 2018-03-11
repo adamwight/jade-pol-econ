@@ -86,9 +86,11 @@ For the moment, AI engineers must audit their own systems.  The emerging industr
   \draw[to] (ai) -- node[midway, above] {raw scores} (scores);
   \draw[to] (scores) to[bend left=25] node[midway, left] {rendered \\ scores} (editor);
   \draw[to] (scores) to[bend right=25] node[midway, left] {scores, \\ justifications} (patroller);
-  \draw[to] (patroller) to[bend right=25] node[midway, above] {} (judgments);
-  \draw[to] (judgments) to[bend right=25] node[midway, above] {} (patroller);
+
+  \draw[to] (patroller) to[bend left=25] node[midway, above] {} (judgments);
+  \draw[to] (judgments) to[bend left=25] node[midway, above] {} (patroller);
     \node [align=flush center] at ($(patroller)!0.5!(judgments)$) {judgments, \\ rationales};
+
   \draw[to] (judgments) to[bend right=25] node[midway, right] {false positives, \\ training data} (ai);
   \draw[to] (patroller) to[loop, out=-60, in=-120, looseness=5] node[near end, left] {discussion, \\ consensus} (patroller);
 
