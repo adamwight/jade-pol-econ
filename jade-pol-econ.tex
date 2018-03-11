@@ -93,14 +93,17 @@ For the moment, AI engineers must audit their own systems.  The emerging industr
 
   % judgments: Two-way cycle with label between legs.
   \draw[to] (patroller) to[bend left=25] node[midway, above] {} (judgments);
-  \draw[to] (judgments) to[bend left=25] node[midway, above] {} (patroller);
+  \draw[to, dashed] (judgments) to[bend left=25] node[midway, above] {} (patroller);
   \node [align=flush center] at ($(patroller)!0.5!(judgments)$) {judgments, \\ rationales};
 
   \draw[to] (judgments) to[bend right=25] node[midway, right] {false positives, \\ training data} (ai);
-  \draw[to] (patroller) to[loop, out=-60, in=-120, looseness=5] node[near end, left] {discussion, \\ consensus} (patroller);
+  
+  \draw[to] (editor) to[loop, out=60, in=120, looseness=5] node[near end, left] {discussion, \\ consensus} (editor);
+
+  \draw[to, dashed] (patroller) to[loop, out=-60, in=-120, looseness=5] node[near end, left] {discussion, \\ consensus} (patroller);
 
 \end{tikzpicture}
-\caption{AI feedback with auditing (JADE in Wikipedia)}\label{fig:audited}
+\caption{AI feedback with auditing in the Wikipedia domain.  Data flows unique to JADE are rendered with a dashed line.}\label{fig:audited}
 \end{figure}
 
 We're introducing Judgment and Dialogue Engine in order to audit the AIs used on Wikipedia and its sister sites, and to humanize this process through transparency and consensus, already strong traditions among these communities.  In figure~\ref{fig:audited}, JADE is the lower feedback loop involving reviewers, shown here in relation to the upper, "conformity cycle" feedback loop in which AI will tend to confirm what editors already believe.
