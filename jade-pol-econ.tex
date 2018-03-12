@@ -1,9 +1,7 @@
-% TODO: only enable `screen` for web review
+% n.b. Enabling `screen` will give colored links and footnotes, only for web review
 \documentclass[format=sigconf]{acmart}
 \usepackage{geometry}
 \geometry{a4paper}
-%\geometry{landscape}                % Activate for for rotated page geometry
-%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
 %\usepackage{graphicx}
 %\usepackage{amssymb}
 \usepackage{amsfonts}
@@ -14,20 +12,19 @@
 \usetikzlibrary{arrows, calc, shapes}
 \usepackage{datastore}
 
+% Disable ACM copyrights.  TODO: set an explicit copyleft.
 \settopmatter{printacmref=false}
 \setcopyright{none}
 
-%\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
-
 \bibliographystyle{acm}
 
+% Title page
 \title{Collaborative auditing: a challenge to secrecy in artificial intelligence}
 \author{Adam Roses Wight}
 \email{awight@wikimedia.org}
 \affiliation{Wikimedia Foundation}
-%\date{}                                           % Activate to display a given date or no date
 
-\acmConference[WebSci'18]{Understanding the political economy of digital technology}{May 2018}{Amsterdam, NL}
+\acmConference[WebSci'18 workshop: Understanding the political economy of digital technology]{}{May 2018}{Amsterdam, NL}
 \acmISBN{}
 \acmDOI{}
 
@@ -36,7 +33,7 @@
 \begin{abstract}
 We introduce a system for detecting and mitigating bias in artificial intelligence, called Judgment and Dialogue Engine (JADE).  Expanding on current auditing approaches, JADE adds a dimension of human communication and collaborative decision-making between the auditors.
 
-Collaborative auditing challenges the hegemony of opaque AIs, offering a platform for holding algorithms accountable and building community among AI investigators.  Audit results will be analyzed and fed back as AI training data in order to iteratively uncover and mitigate biases.  Our hope is that JADE will improve AI fairness and performance, and may help establish transparent and collaborative auditing as an urgent intervention to make in the general interest.
+Collaborative auditing challenges the hegemony of opaque AIs, offering a platform for holding algorithms accountable and building community among AI investigators.  Audit results will be analyzed and fed back as AI training data in order to iteratively uncover and mitigate biases.  Our hope is that JADE will improve AI fairness and performance, and may help establish transparent and collaborative auditing as an urgent intervention we must make in the general interest.
 \end{abstract}
 
 \maketitle
@@ -53,7 +50,7 @@ All AIs learn from humans, and will replicate our prejudices or group polarizati
 
 Exploring and measuring biases is imperative, and researchers have developed methods which will serve even without privileged access to AI internals.  Christian Sandvig (2014) \citep{Sandvig} illustrates these methods, but also warns that high-quality information gathering for an independent audit is prohibited by most sites' terms of service, and can even trigger felonies under the United States' Computer Fraud and Abuse Act.
 
-For the moment, we leave it to AI engineers to audit their own systems.  The emerging industry standard for user auditing feedback falls well behind the state of the art for rich feedback\footnote{Stephanie Rosenthal and Anind Dey (2010) \citep{Rosenthal2010} optimize the choice of data to include in rich feedback.}, and will present some sample of users with a dull feedback dialog, posing a question like "Do you agree with this recommendation?".  In these systems, the respondent may have the option to leave a comment, but that's the beginning and end of any interaction.\footnote{For example, Google Ideas's Perspective API \url{https://github.com/conversationai/perspectiveapi/blob/master/api_reference.md\#sending-feedback-suggestcommentscore} is ahead of the curve only because it allows a client response to include rationales as in Sharma (2015) \citep{Sharma2015}.}  Reviewers are alienated from one another, cannot read or discuss other users' responses, and have no agency.  They are reduced to mere processes, gathering and corroborating data in silent redundancy.
+For the moment, we leave it to AI engineers to audit their own systems.  The emerging industry standard for audit by users falls well behind the state of the art for rich feedback\footnote{Stephanie Rosenthal and Anind Dey (2010) \citep{Rosenthal2010} optimize the choice of data to include in rich feedback.}, and will present some sample of users with a dull feedback dialog, posing a question like "Do you agree with this recommendation?".  In these systems, the respondent may have the option to leave a comment, but that's the beginning and end of any interaction.\footnote{For example, Google Ideas's Perspective API \url{https://github.com/conversationai/perspectiveapi/blob/master/api_reference.md\#sending-feedback-suggestcommentscore} is ahead of the curve only because it allows a client response to include rationales as in Sharma (2015) \citep{Sharma2015}.}  Reviewers are alienated from one another, cannot read or discuss other users' responses, and have no agency.  They are reduced to mere processes, gathering and corroborating data in silent redundancy.
 
 \begin{figure}
 \begin{tikzpicture}[
@@ -84,7 +81,7 @@ For the moment, we leave it to AI engineers to audit their own systems.  The eme
   \draw[to] (content) to[bend left=25] node[midway, right] {articles, \\ edits} (ai);
   \draw[to] (ai) -- node[midway, above] {raw scores} (scores);
   \draw[to] (scores) to[bend left=25] node[midway, left] {rendered \\ scores} (editor);
-  \draw[to] (scores) to[bend right=25] node[midway, left] {scores, \\ justifications} (patroller);
+  \draw[to] (scores) to[bend right=25] node[midway, left] {scores, \\ context, \\ justifications} (patroller);
 
   % edits: Two-way cycle with label between legs.
   \draw[to] (editor) to[bend left=25] node[midway, above] {} (content);
@@ -110,9 +107,13 @@ For the moment, we leave it to AI engineers to audit their own systems.  The eme
 
 We're introducing Judgment and Dialogue Engine in order to audit the AIs used on Wikipedia and its sister sites, and to humanize this process through transparency and consensus, already strong traditions among these communities.  In figure~\ref{fig:audited}, JADE is the lower feedback loop involving reviewers, shown here in relation to the upper, "conformity cycle" feedback loop in which AI helps to confirm what editors already believe.
 
-In practice, reviewers using JADE will be reading through wiki content and looking at machine predictions, and will begin a JADE session either to flag an incorrect prediction, or simply to record their judgments about wiki content.  JADE will provide open access to the data created by its reviewers.  Crucially, reviewers are able to read one another's judgments, discuss any disagreements, and make changes to the recorded judgment.
+Note in the figure that the bottom, auditing cycle is a mirror image of Wikipedia's existing cooperative workflow, once we add the JADE improvements.  We're hoping that established norms of consensus and boldly editing each other's content, are a nautral way to support and accelerate discussion cycles among the reviewers.  We believe these principles can be applied to many wiki workflows.
 
-The best outcome would be a disintermediation that takes power away from the algorithm designers and gives it to the reviewers.  In this scenario, the data from reviewers would feed back into AI training without mediation by AI technicians.  The worst outcome would be that we enable the formation of a small group which undergoes polarization, and pushes the AI toward even deeper biases.
+In practice, reviewers using JADE-backed tools will be reading through wiki content and looking at machine predictions, and will begin a JADE session either to flag an incorrect prediction, or simply to record their personal judgments about wiki content.
+
+JADE provides open access to all data entered by reviewers, each judgment is a wiki page.  Crucially, reviewers are welcome to read one another's judgments, discuss their disagreements, and make changes to the judgment of record.
+
+The best outcome would be that JADE performs a disintermediation, taking power away from the algorithm designers and giving it to the reviewers.  In this scenario, the data from reviewers would feed back into AI training with minimal mediation by AI technicians.  The worst outcome would be that we enable the formation of a new, small group which undergoes polarization, and pushes the AI toward even deeper biases.
 
 If our society can agree that AIs must be regulated by a "right to audit"\footnote{A precedent for this sort of regulation is the U.S. Federal Aviation Administration's Aircraft Certification Service, which reviews and certifies all software and hardware to be used in aircraft.}, then JADE may serve as an example for how to accomplish this auditing in a pro-social environment.
 
