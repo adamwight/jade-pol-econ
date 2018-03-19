@@ -1,0 +1,47 @@
+\begin{tikzpicture}[
+  font=\sffamily,
+  every matrix/.style={ampersand replacement=\&, column sep=2cm, row sep=2cm},
+  interface/.style={draw, thick, regular polygon, regular polygon sides=4, inner sep=0},
+  process/.style={draw, thick, rounded corners, inner sep=.3 cm},
+  datastore/.style={draw, thick, shape=datastore, inner sep=.3cm},
+  to/.style={->, >=stealth', shorten >=1pt, semithick, font=\sffamily\footnotesize},
+  both/.style={<->, >=stealth', shorten >=1pt, semithick, font=\sffamily\footnotesize},
+  every node/.style={align=center}]
+
+  % Position the nodes using a matrix layout
+  \matrix{
+    \node[process] (editor) {Contributors};
+      \& \node[datastore] (content) {Content}; \\
+    \node[datastore] (scores) {Machine \\ predictions};
+      \& \node[process] (ai) {Artificial \\ intelligence}; \\
+    \node [process] (patroller) {Reviewers};
+      \& \node [datastore] (judgments) {Judgments}; \\
+  };
+
+  % Place area labels at center of boxes.
+  \node [align=flush center] at ($(content)!0.5!(scores)$) {\Large{conformity} \\ \Large{cycle}};
+  \node [align=flush center] at ($(ai)!0.5!(patroller)$) {\Large{collaborative} \\ \Large{auditing}};
+
+  % Draw the arrows between the nodes and label them.
+  \draw[to] (content) to[bend left=25] node[midway, right] {articles, \\ edits} (ai);
+  \draw[to] (ai) -- node[midway, above] {raw scores} (scores);
+  \draw[to] (scores) to[bend left=25] node[midway, left] {scores, \\ context} (editor);
+  \draw[to] (scores) to[bend right=25] node[midway, left] {scores, \\ context, \\ justifications} (patroller);
+
+  % edits: Two-way cycle with label between legs.
+  \draw[to] (editor) to[bend left=25] node[midway, above] {} (content);
+  \draw[to] (content) to[bend left=25] node[midway, above] {} (editor);
+  \node [align=flush center] at ($(editor)!0.5!(content)$) {edits, \\ curation};
+
+  % judgments: Two-way cycle with label between legs.
+  \draw[to] (patroller) to[bend left=25] node[midway, above] {} (judgments);
+  \draw[to, dashed] (judgments) to[bend left=25] node[midway, above] {} (patroller);
+  \node [align=flush center] at ($(patroller)!0.5!(judgments)$) {judgments, \\ rationales};
+
+  \draw[to] (judgments) to[bend right=25] node[midway, right] {false positives, \\ training data} (ai);
+  
+  \draw[to] (editor) to[loop, out=60, in=120, looseness=5] node[near end, left] {discussion, \\ consensus} (editor);
+
+  \draw[to, dashed] (patroller) to[loop, out=-60, in=-120, looseness=5] node[near end, left] {discussion, \\ consensus} (patroller);
+
+\end{tikzpicture}

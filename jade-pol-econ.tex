@@ -19,7 +19,7 @@
 \bibliographystyle{acm}
 
 % Title page
-\title{Collaborative auditing: a challenge to secrecy in artificial intelligence}
+\title{Collaborative auditing} \subtitle{A challenge to secrecy in artificial intelligence}
 \author{Adam Roses Wight}
 \email{awight@wikimedia.org}
 \affiliation{Wikimedia Foundation}
@@ -46,62 +46,16 @@ Human decision-making has been replaced by its emulation, interpolated from prev
 
 Corporate ownership of powerful AIs which affect people's life chances (mortgages, law enforcement) and exacerbate existing social ills (redlining, racial profiling) is beyond troubling, because we in the USA have no oversight or democratic accountability by which we can fight back yet.  AIs operated by companies or governments are closed by default.  Companies rely on this information disparity, hiding secrets to protect profit margins, and have shown no interest in public review of algorithms or data.
 
-All AIs learn from humans, and will replicate our prejudices or group polarization.  Just as it's difficult for humans to be self-critical and diagnose our own prejudices, AIs are blind to their own built-in biases and cannot give an accurate reckoning, and owners hardly ever admit to side-effects they become aware of.\footnote{Solon Barocas (2014) \citep{barocas2014data} gives an overview of the types of bias and in section 2.5 demonstrates a positive feedback loop between AI predictions and iterations on the sample frame.}  Playing with fire, in the dark and uncertain of the consequences, AI practitioners really are Ali Rahimi's modern alchemists.\footnote{\url{http://www.argmin.net/2017/12/05/kitchen-sinks/}}
+All AIs learn from humans, and will replicate our prejudices or group polarization.  Just as it's difficult for humans to be self-critical and diagnose our own prejudices, AIs are blind to their own built-in biases and cannot give an accurate reckoning, and owners hardly ever admit to side-effects they become aware of.\footnote{Solon Barocas (2014) \citep{barocas2014data} lists many types of bias, and in section 2.5 demonstrates a positive feedback loop between AI predictions and iterations on the sample frame.}  Playing with fire, in the dark and uncertain of the consequences, AI practitioners really are Ali Rahimi's modern alchemists.\footnote{\url{http://www.argmin.net/2017/12/05/kitchen-sinks/}}
 
 Exploring and measuring biases is imperative, and researchers have developed methods which will serve even without privileged access to AI internals.  Christian Sandvig (2014) \citep{Sandvig} illustrates these methods, but also warns that high-quality information gathering for an independent audit is prohibited by most sites' terms of service, and can even trigger felonies under the United States' Computer Fraud and Abuse Act.
 
-For the moment, we leave it to AI engineers to audit their own systems.  The emerging industry standard for audit by users falls well behind the state of the art for rich feedback\footnote{Stephanie Rosenthal and Anind Dey (2010) \citep{Rosenthal2010} optimize the choice of data to include in rich feedback.}, and will present some sample of users with a dull feedback dialog, posing a question like "Do you agree with this recommendation?".  In these systems, the respondent may have the option to leave a comment, but that's the beginning and end of any interaction.\footnote{For example, Google Ideas's Perspective API \url{https://github.com/conversationai/perspectiveapi/blob/master/api_reference.md\#sending-feedback-suggestcommentscore} is ahead of the curve only because it allows a client response to include rationales as in Sharma (2015) \citep{Sharma2015}.}  Reviewers are alienated from one another, cannot read or discuss other users' responses, and have no agency.  They are reduced to mere processes, gathering and corroborating data in silent redundancy.
-
 \begin{figure}
-\begin{tikzpicture}[
-  font=\sffamily,
-  every matrix/.style={ampersand replacement=\&, column sep=2cm, row sep=2cm},
-  interface/.style={draw, thick, regular polygon, regular polygon sides=4, inner sep=0},
-  process/.style={draw, thick, rounded corners, inner sep=.3 cm},
-  datastore/.style={draw, thick, shape=datastore, inner sep=.3cm},
-  to/.style={->, >=stealth', shorten >=1pt, semithick, font=\sffamily\footnotesize},
-  both/.style={<->, >=stealth', shorten >=1pt, semithick, font=\sffamily\footnotesize},
-  every node/.style={align=center}]
-
-  % Position the nodes using a matrix layout
-  \matrix{
-    \node[process] (editor) {Contributors};
-      \& \node[datastore] (content) {Content}; \\
-    \node[datastore] (scores) {Machine \\ predictions};
-      \& \node[process] (ai) {Artificial \\ intelligence}; \\
-    \node [process] (patroller) {Reviewers};
-      \& \node [datastore] (judgments) {Judgments}; \\
-  };
-
-  % Place area labels at center of boxes.
-  \node [align=flush center] at ($(content)!0.5!(scores)$) {\Large{conformity} \\ \Large{cycle}};
-  \node [align=flush center] at ($(ai)!0.5!(patroller)$) {\Large{collaborative} \\ \Large{auditing}};
-
-  % Draw the arrows between the nodes and label them.
-  \draw[to] (content) to[bend left=25] node[midway, right] {articles, \\ edits} (ai);
-  \draw[to] (ai) -- node[midway, above] {raw scores} (scores);
-  \draw[to] (scores) to[bend left=25] node[midway, left] {rendered \\ scores} (editor);
-  \draw[to] (scores) to[bend right=25] node[midway, left] {scores, \\ context, \\ justifications} (patroller);
-
-  % edits: Two-way cycle with label between legs.
-  \draw[to] (editor) to[bend left=25] node[midway, above] {} (content);
-  \draw[to] (content) to[bend left=25] node[midway, above] {} (editor);
-  \node [align=flush center] at ($(editor)!0.5!(content)$) {edits, \\ curation};
-
-  % judgments: Two-way cycle with label between legs.
-  \draw[to] (patroller) to[bend left=25] node[midway, above] {} (judgments);
-  \draw[to, dashed] (judgments) to[bend left=25] node[midway, above] {} (patroller);
-  \node [align=flush center] at ($(patroller)!0.5!(judgments)$) {judgments, \\ rationales};
-
-  \draw[to] (judgments) to[bend right=25] node[midway, right] {false positives, \\ training data} (ai);
-  
-  \draw[to] (editor) to[loop, out=60, in=120, looseness=5] node[near end, left] {discussion, \\ consensus} (editor);
-
-  \draw[to, dashed] (patroller) to[loop, out=-60, in=-120, looseness=5] node[near end, left] {discussion, \\ consensus} (patroller);
-
-\end{tikzpicture}
-\caption{AI feedback with auditing, in Wikipedia.  Dashed lines are the data flows unique to JADE.}\label{fig:audited}
+  \input{jade-dfd}
+  \caption{AI feedback with auditing, in Wikipedia.  Dashed lines are the data flows unique to JADE.}\label{fig:audited}
 \end{figure}
+
+For the moment, we leave it to AI engineers to audit their own systems.  The emerging industry standard for audit by users falls well behind the state of the art for rich feedback\footnote{Stephanie Rosenthal and Anind Dey (2010) \citep{Rosenthal2010} optimize the choice of data to include in rich feedback.}, and will present some sample of users with a dull feedback dialog, posing a question like "Do you agree with this recommendation?".  In these systems, the respondent may have the option to leave a comment, but that's the beginning and end of any interaction.\footnote{For example, Google Ideas's Perspective API \url{https://github.com/conversationai/perspectiveapi/blob/master/api\_reference.md\#sending-feedback-suggestcommentscore} is ahead of the curve only because it allows a client response to include rationales as in Sharma (2015) \citep{Sharma2015}.}  Reviewers are alienated from one another, cannot read or discuss other users' responses, and have no agency.  They are reduced to mere processes, gathering and corroborating data in silent redundancy.
 
 \section{Judgment and Dialogue Engine}
 
